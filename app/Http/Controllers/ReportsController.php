@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Report;
+use App\Iman\MessageParser;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -46,9 +47,13 @@ class ReportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(Report $report, MessageParser $message)
     {
-        return view('reports.show', compact('report'));
+
+        return view('reports.show', [
+            'report' => $report,
+            'fields' => $message->parse($report->plain)
+        ]);
 
     }
 

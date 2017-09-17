@@ -4,24 +4,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @foreach ($reports as $report)
+            <span>From: {{ $report->from }}</span>
             <div class="panel panel-default">
-                <div class="panel-heading">Email Reports</div>
+                
+                <div class="panel-heading">
+                    <a href="{{ $report->path() }}"> {{ $report->subject }} </a>        
+                    <span class="pull-right">{{ $report->created_at }}</span>
+                </div>
 
                 <div class="panel-body">
-                    @foreach ($reports as $report)
-                        <article>
-                            <h4>
-                                <a href="{{ $report->path() }}">
-                                    {{ $report->subject }}
-                                </a> 
-                            </h4>
-                            <div class="body">{!! html_entity_decode($report->html) !!}</div>
-                        </article>
-
-                        <hr>
-                    @endforeach
+                    <article>
+                        <div class="body">{!! html_entity_decode($report->html) !!}</div>
+                    </article>                    
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>

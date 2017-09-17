@@ -22,6 +22,7 @@ Route::post('/incoming', function() {
 	header("Content-type: text/plain");
 
 	$to = $_POST['envelope']['to'];
+	$from = $_POST['envelope']['from'];
 	$subject = $_POST['headers']['Subject'];
 	$plain = $_POST['plain'];
 	$html = $_POST['html'];
@@ -30,7 +31,7 @@ Route::post('/incoming', function() {
 	if ($to == '33079c4574479c853641@cloudmailin.net'){
 		header("HTTP/1.0 200 OK");
 
-		DB::table('reports')->insert(['to' => $to, 'subject' => $subject, 'plain' => $plain, 'html' => $html, 'reply' => $reply, 'from' => 'abdi']);
+		DB::table('reports')->insert(['to' => $to, 'subject' => $subject, 'plain' => $plain, 'html' => $html, 'reply' => $reply, 'from' => $from]);
 		
 		echo('success');
 	}else{
