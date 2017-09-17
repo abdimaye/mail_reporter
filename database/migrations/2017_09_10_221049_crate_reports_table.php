@@ -18,9 +18,9 @@ class CrateReportsTable extends Migration
             $table->string('to');
             $table->string('subject');
             $table->string('from');
-            $table->string('plain');
-            $table->string('html');
-            $table->string('reply');
+            $table->text('plain');
+            $table->text('html');
+            $table->text('reply');
             $table->timestamps();
         });
     }
